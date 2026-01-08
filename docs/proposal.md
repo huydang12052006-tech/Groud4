@@ -1,4 +1,7 @@
-Each environmental area includes the following information:
+1. Environmental Management Project
+Environmental Area Management
+
+Each environmental area includes:
 
 Area ID
 
@@ -11,7 +14,7 @@ Pollution level (an integer value from 0 to 100)
 Main Functions
 
 Add an environmental area
-The user enters the information of an area and saves it into a list.
+The user enters the area information and saves it into a list.
 
 Display all environmental areas
 Show all areas that have been added to the system.
@@ -41,4 +44,4 @@ Simple Statistics (Optional)
 
 Count the number of polluted areas
 
-Find the area with the highest pollution leve
+Find the area with the highest pollution level
