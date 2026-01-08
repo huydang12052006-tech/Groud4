@@ -1,48 +1,44 @@
-Dự án 
-Quản Lí môi trường 
-1. Quản lí khu vực môi trường
+Each environmental area includes the following information:
 
-Mỗi khu vực môi trường gồm:
+Area ID
 
-mã khu vực
+Area name
 
-tên khu vực
+Area type (for example: river, lake, residential area)
 
-loại khu vực (ví dụ: sông, hồ, khu dân cư)
+Pollution level (an integer value from 0 to 100)
 
-mức độ ô nhiễm (số nguyên từ 0 đến 100)
+Main Functions
 
-2. Các chức năng chính
+Add an environmental area
+The user enters the information of an area and saves it into a list.
 
-Thêm khu vực môi trường
-Nhập thông tin khu vực rồi lưu vào danh sách
+Display all environmental areas
+Show all areas that have been added to the system.
 
-Hiển thị danh sách khu vực
-In ra toàn bộ khu vực đã nhập
+Update pollution level
+Find an area by its ID and update its pollution level.
 
-Cập nhật mức độ ô nhiễm
-Tìm khu vực theo mã, sửa lại mức độ ô nhiễm
+Delete an environmental area
+Find an area by its ID and remove it from the list.
 
-Xóa khu vực
-Tìm theo mã rồi xóa khỏi danh sách
+Search for an environmental area
+Search areas by their name.
 
-Tìm kiếm khu vực
-Tìm theo tên khu vực
+Pollution Level Evaluation
 
-3. Đánh giá mức độ ô nhiễm (rất dễ, nên có)
+The system evaluates environmental quality based on the pollution level:
 
-Dựa vào mức độ ô nhiễm:
+Pollution level less than or equal to 30: Good environment
 
-nhỏ hoặc bằng 30 → môi trường tốt
+Pollution level from 31 to 60: Medium environment
 
-từ 31 đến 60 → môi trường trung bình
+Pollution level greater than 60: Polluted environment
 
-lớn hơn 60 → môi trường ô nhiễm
+When displaying area information, the evaluation result is shown together with the area details.
 
-Khi hiển thị khu vực thì in luôn đánh giá này ra.
+Simple Statistics (Optional)
 
-4. Thống kê đơn giản (nếu muốn thêm điểm)
+Count the number of polluted areas
 
-Đếm số khu vực ô nhiễm
-
-Tìm khu vực có mức độ ô nhiễm cao nhất
+Find the area with the highest pollution leve
