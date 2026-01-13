@@ -1,6 +1,5 @@
 Tên thành viên :
-Nguyễn Huỳnh Đăng Huy - trưởng nhóm 
-Nguyễn Trần Anh Kiệt - thành viên 
+Nguyễn Huỳnh Đăng Huy - trưởng nhóm ///Nguyễn Trần Anh Kiệt - thành viên 
 Giới thiệu dự án
 
 Tên dự án: Hệ thống Quản lý Môi trường
