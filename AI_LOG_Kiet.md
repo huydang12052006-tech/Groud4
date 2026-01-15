@@ -186,3 +186,62 @@ dịch
 ở các đề mục viết 1 2 3 dô đi
 viết tiếng anh đi
 các mục nhỏ dùng dấu chấm
+1. English Version: Detailed Class Structure EnvironmentalArea (Model): Stores the core attributes of a location, such as areaID, areaName, areaType, and pollutionLevel. AreaManager (Controller): Manages the list of areas using an ArrayList. It implements functions like adding, updating, deleting, and searching. PollutionAssessor (Logic): Contains the logic to evaluate the environment as "Good", "Moderate", or "Polluted" based on numerical thresholds. StatisticsService (Logic): Provides analytical data, such as counting polluted areas or identifying the location with the highest pollution level. ConsoleUI (View): Manages the black console screen interface, displaying the menu and formatted data tables to the user. InputValidator (Utility): Validates user input to ensure data integrity, such as checking if the pollution level is within the 0-100 range. DataGenerator (Utility): Automatically generates 100 lines of mock data to demonstrate the system's capabilities during the demo. FilePersistence (Utility): Saves and loads data from text or binary files, serving as a substitute since a Database (DBI) is not yet used. UpdateLogger (Model): Tracks and records the history of pollution level changes, including timestamps and value differences. EnvironmentalApp (Main): The entry point of the application that contains the main method to initialize and run the entire system. dự án này có bao nhiêu lớp, mỗi lớp có bao nhiêu thuộc tính, mỗi thuộc tính như nào
+2. Phản biện dự án: Bản sao Flappy Bird (Java – PRO192)
+1. Ưu điểm
+
+Game đơn giản, phù hợp trình độ sinh viên mới học Java OOP.
+
+Áp dụng được:
+
+Class, Object
+
+Kế thừa (Bird, Pipe, GameObject)
+
+Đóng gói dữ liệu
+
+Dễ kiểm tra logic va chạm, vòng lặp game, xử lý sự kiện bàn phím.
+
+Giúp hiểu cơ chế game 2D cơ bản.
+
+2. Hạn chế
+
+Ý tưởng không mới, tính sáng tạo thấp.
+
+Chỉ mô phỏng lại gameplay gốc, chưa có cải tiến rõ ràng.
+
+Ít thể hiện tư duy thiết kế hệ thống lớn.
+
+Nếu code chưa tách class rõ ràng → dễ bị đánh giá là làm theo tutorial.
+
+3. Vấn đề kỹ thuật thường gặp
+
+Logic va chạm chưa chính xác.
+
+Tốc độ khung hình không ổn định.
+
+Quản lý tài nguyên hình ảnh chưa tối ưu.
+
+Code còn lẫn giữa xử lý game và giao diện.
+
+4. Hướng cải tiến để phản biện mạnh hơn
+
+Để dự án không bị xem là “copy” đơn thuần, nhóm có thể đề xuất:
+
+Thêm nhiều chế độ chơi.
+
+Hệ thống điểm cao lưu file.
+
+Thêm vật phẩm đặc biệt.
+
+Thêm nhiều loại chướng ngại vật.
+
+Tăng độ khó theo thời gian.
+
+Tùy chỉnh nhân vật.
+
+=> Khi đó dự án trở thành Flappy Bird cải tiến, không còn là bản sao.
+
+5. Kết luận phản biện
+
+Dự án Flappy Bird phù hợp cho môn PRO192 vì giúp sinh viên luyện OOP và tư duy lập trình game cơ bản. Tuy nhiên, nếu chỉ dừng ở việc sao chép gameplay gốc thì tính sáng tạo và giá trị học thuật còn hạn chế. Nhóm cần cải tiến thêm tính năng để thể hiện rõ năng lực thiết kế và lập trình Java.
