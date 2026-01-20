@@ -562,3 +562,247 @@ FilePersistence	0
 UpdateLogger	3
 EnvironmentalApp	0
 TỔNG CỘNG	8 thuộc tính
+nois chi tieets tungwf dongf ddeer tooi nois trc lopws
+
+Ok 👍 mình hiểu ý bạn rồi.
+👉 Bạn muốn: nói RẤT CHI TIẾT, theo kiểu “từng dòng một”, giải thích rõ ràng TRƯỚC MỖI LỚP và BÊN TRONG MỖI LỚP, giống như khi thuyết trình hoặc bảo vệ bài.
+
+Mình sẽ làm theo cấu trúc sau cho MỖI LỚP:
+
+1️⃣ Giải thích lý do tồn tại của lớp
+2️⃣ Giải thích vai trò của lớp trong hệ thống
+3️⃣ Giải thích từng dòng thuộc tính (nếu có)
+4️⃣ Kết luận ngắn gọn cho lớp đó
+
+Không thêm kỹ thuật, không thêm thuộc tính ❗
+
+🔹 1. Lớp EnvironmentalArea (Khu vực Môi trường)
+🔸 Trước khi nói về lớp
+
+Hệ thống quản lý môi trường bắt buộc phải có đối tượng đại diện cho từng khu vực.
+Nếu không có lớp này → không có dữ liệu để quản lý.
+
+👉 Vì vậy lớp này là lớp Model cốt lõi.
+
+🔸 Giải thích từng dòng thuộc tính
+
+Dòng 1 – ID khu vực
+
+Dùng để xác định duy nhất mỗi khu vực
+
+Tránh nhầm lẫn giữa các khu vực có tên giống nhau
+
+Không có ID → không thể cập nhật / tìm kiếm chính xác
+
+Dòng 2 – Tên khu vực
+
+Giúp người dùng nhận biết khu vực
+
+Chỉ mang tính mô tả, không dùng để phân biệt kỹ thuật
+
+Dòng 3 – Loại khu vực
+
+Cho biết khu vực thuộc nhóm nào (sông, hồ, khu dân cư…)
+
+Phục vụ cho phân loại và thống kê
+
+Dòng 4 – Mức độ ô nhiễm
+
+Là giá trị quan trọng nhất
+
+Phản ánh tình trạng môi trường hiện tại
+
+Là đầu vào cho đánh giá và thống kê
+
+🔸 Kết luận lớp
+
+👉 Lớp này chỉ chứa dữ liệu, không xử lý logic.
+👉 Có 4 thuộc tính là hợp lý và bắt buộc.
+
+🔹 2. Lớp AreaManager (Quản lý khu vực)
+🔸 Trước khi nói về lớp
+
+Ta có nhiều khu vực môi trường, không thể quản lý từng cái riêng lẻ.
+→ Cần một lớp đứng ra quản lý danh sách.
+
+🔸 Giải thích từng dòng thuộc tính
+
+Dòng 1 – areaList
+
+Là danh sách chứa tất cả các EnvironmentalArea
+
+Là trung tâm dữ liệu của toàn hệ thống
+
+Mọi chức năng:
+
+hiển thị
+
+thống kê
+
+đánh giá
+đều lấy dữ liệu từ đây
+
+🔸 Kết luận lớp
+
+👉 Lớp này chỉ cần 1 thuộc tính
+👉 Không lưu log, không lưu file, không lưu trạng thái khác
+
+🔹 3. Lớp PollutionAssessor (Đánh giá ô nhiễm)
+🔸 Trước khi nói về lớp
+
+Đánh giá ô nhiễm là hành vi xử lý, không phải dữ liệu.
+→ Không phù hợp để lưu thuộc tính.
+
+🔸 Vì sao KHÔNG có dòng thuộc tính nào?
+
+Lớp này:
+
+Nhận mức ô nhiễm
+
+Phân loại
+
+Trả kết quả
+
+Không giữ lại dữ liệu sau khi xử lý
+
+👉 Vì vậy 0 thuộc tính là đúng
+
+🔸 Kết luận lớp
+
+👉 Lớp logic thuần túy
+👉 Chỉ có phương thức, không có biến
+
+🔹 4. Lớp StatsService (Thống kê)
+🔸 Trước khi nói về lớp
+
+Thống kê là tính toán trên dữ liệu có sẵn, không phải nơi lưu dữ liệu.
+
+🔸 Vì sao KHÔNG có thuộc tính?
+
+Dữ liệu thống kê:
+
+lấy từ AreaManager
+
+xử lý
+
+trả kết quả
+
+Không lưu lâu dài → không cần biến
+
+🔸 Kết luận lớp
+
+👉 Chỉ xử lý, không lưu
+👉 0 thuộc tính
+
+🔹 5. Lớp ConsoleUI (Giao diện)
+🔸 Trước khi nói về lớp
+
+Giao diện console chỉ:
+
+Hiển thị menu
+
+Nhận lựa chọn
+
+🔸 Vì sao không có thuộc tính?
+
+Menu không cần lưu
+
+Mỗi lần hiển thị là tạm thời
+
+Không đại diện cho dữ liệu
+
+🔸 Kết luận lớp
+
+👉 Lớp View đúng nghĩa
+👉 Không giữ trạng thái
+
+🔹 6. Lớp InputValidator (Kiểm tra dữ liệu)
+🔸 Trước khi nói về lớp
+
+Kiểm tra dữ liệu là chức năng dùng chung, không thuộc về đối tượng nào.
+
+🔸 Vì sao không có thuộc tính?
+
+Không cần nhớ dữ liệu cũ
+
+Chỉ kiểm tra → trả true/false
+
+🔸 Kết luận lớp
+
+👉 Lớp tiện ích
+👉 0 thuộc tính
+
+🔹 7. Lớp DataGenerator (Sinh dữ liệu)
+🔸 Trước khi nói về lớp
+
+Dùng để tạo dữ liệu mẫu, thường cho demo hoặc test.
+
+🔸 Vì sao không có thuộc tính?
+
+Dữ liệu sinh ra trả về ngay
+
+Không lưu trong lớp
+
+🔸 Kết luận lớp
+
+👉 Sinh → trả → xong
+👉 0 thuộc tính
+
+🔹 8. Lớp FilePersistence (Lưu / đọc file)
+🔸 Trước khi nói về lớp
+
+Lớp này chỉ làm nhiệm vụ:
+
+Ghi dữ liệu ra file
+
+Đọc dữ liệu từ file
+
+🔸 Vì sao không có thuộc tính?
+
+Không mô tả đường dẫn cố định
+
+Không lưu trạng thái file
+
+🔸 Kết luận lớp
+
+👉 Lớp thao tác I/O
+👉 0 thuộc tính
+
+🔹 9. Lớp UpdateLogger (Ghi log)
+🔸 Trước khi nói về lớp
+
+Mỗi lần cập nhật ô nhiễm → cần ghi lại lịch sử.
+
+🔸 Giải thích từng dòng thuộc tính
+
+Dòng 1 – timestamp
+
+Ghi nhận thời điểm thay đổi
+
+Dòng 2 – oldPollutionLevel
+
+Giá trị trước khi cập nhật
+
+Dùng để so sánh
+
+Dòng 3 – newPollutionLevel
+
+Giá trị sau khi cập nhật
+
+Thể hiện thay đổi
+
+🔸 Kết luận lớp
+
+👉 Lớp lưu lịch sử
+👉 3 thuộc tính hợp lý
+
+🔹 10. Lớp EnvironmentalApp (Main)
+🔸 Trước khi nói về lớp
+
+Đây là điểm bắt đầu chương trình.
+
+🔸 Vì sao không có thuộc tính?
+
+Chỉ gọi các lớp khác
+
+Không đại diện dữ liệu
