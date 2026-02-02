@@ -245,3 +245,267 @@ Tùy chỉnh nhân vật.
 5. Kết luận phản biện
 
 Dự án Flappy Bird phù hợp cho môn PRO192 vì giúp sinh viên luyện OOP và tư duy lập trình game cơ bản. Tuy nhiên, nếu chỉ dừng ở việc sao chép gameplay gốc thì tính sáng tạo và giá trị học thuật còn hạn chế. Nhóm cần cải tiến thêm tính năng để thể hiện rõ năng lực thiết kế và lập trình Java.
+public class EnvironmentArea {
+
+    protected String areaId;
+    protected String areaName;
+    protected int pollutionLevel;
+
+    // Constructor mặc định
+    public EnvironmentArea() {
+    }
+
+    // Constructor đầy đủ tham số
+    public EnvironmentArea(String areaId, String areaName, int pollutionLevel) {
+        this.areaId = areaId;
+        this.areaName = areaName;
+        this.pollutionLevel = pollutionLevel;
+    }
+
+    public String getAreaId() {
+        return areaId;
+    }
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public int getPollutionLevel() {
+        return pollutionLevel;
+    }
+
+    public void setPollutionLevel(int pollutionLevel) {
+        this.pollutionLevel = pollutionLevel;
+    }
+
+    // Đánh giá mức độ ô nhiễm
+    public String evaluatePollution() {
+        if (pollutionLevel < 30) {
+            return "Low pollution";
+        } else if (pollutionLevel < 70) {
+            return "Medium pollution";
+        } else {
+            return "High pollution";
+        }
+    }
+
+    public void display() {
+        System.out.println("Area ID: " + areaId);
+        System.out.println("Area Name: " + areaName);
+        System.out.println("Pollution Level: " + pollutionLevel);
+        System.out.println("Evaluation: " + evaluatePollution());
+    }
+}
+public class RiverArea extends EnvironmentArea {
+
+    public RiverArea(String areaId, String areaName, int pollutionLevel) {
+        super(areaId, areaName, pollutionLevel);
+    }
+
+    @Override
+    public void display() {
+        System.out.println("=== River Area ===");
+        super.display();
+    }
+}
+public class LakeArea extends EnvironmentArea {
+
+    public LakeArea(String areaId, String areaName, int pollutionLevel) {
+        super(areaId, areaName, pollutionLevel);
+    }
+
+    @Override
+    public void display() {
+        System.out.println("=== Lake Area ===");
+        super.display();
+    }
+}
+public class ResidentialArea extends EnvironmentArea {
+
+    public ResidentialArea(String areaId, String areaName, int pollutionLevel) {
+        super(areaId, areaName, pollutionLevel);
+    }
+
+    @Override
+    public void display() {
+        System.out.println("=== Residential Area ===");
+        super.display();
+    }
+} phiên bản kế thừa đây so sanh đi
+
+Ok, đoạn này rất đúng hướng về mặt OOP, nhưng theo đúng yêu cầu thầy PRO192 thì bạn đang DÍNH LỖI NẶNG.
+Mình sẽ so sánh + chỉ rõ sai ở đâu, vì sao sai, và sửa thế nào để bạn giải thích được với thầy.
+
+1️⃣ So sánh 2 phiên bản: CÓ KẾ THỪA vs KHÔNG KẾ THỪA
+🔹 Phiên bản CÓ KẾ THỪA (bạn vừa gửi)
+Cấu trúc
+EnvironmentArea (lớp cha)
+ ├── RiverArea
+ ├── LakeArea
+ └── ResidentialArea
+
+Điểm tốt ✅
+
+Có lớp cha EnvironmentArea
+
+Thuộc tính chung chỉ viết 1 lần
+
+Các lớp con:
+
+Không bị lặp code
+
+Chỉ override display()
+
+👉 Ý nghĩa để nói với thầy:
+
+“Khi dùng kế thừa, các thuộc tính và hành vi chung được đưa lên lớp cha, giúp giảm trùng lặp code.”
+
+🔹 Phiên bản KHÔNG KẾ THỪA (code trước đó)
+Cấu trúc
+RiverArea
+LakeArea
+ResidentialArea
+
+Điểm yếu ❌
+
+Mỗi class đều có:
+
+areaId
+areaName
+pollutionLevel
+evaluatePollution()
+display()
+
+
+👉 Ý nghĩa để nói với thầy:
+
+“Không dùng kế thừa dẫn đến lặp lại nhiều thuộc tính và phương thức, gây khó bảo trì.”
+
+✔ So sánh này là CHUẨN yêu cầu bài
+
+2️⃣ LỖI NGHIÊM TRỌNG THEO QUY ĐỊNH CỦA THẦY ❌❌❌
+❌ Sai vì dùng protected
+protected String areaId;
+protected String areaName;
+protected int pollutionLevel;
+
+
+📌 Thầy yêu cầu RẤT RÕ:
+
+❌ Tuyệt đối KHÔNG dùng protected
+✔ TẤT CẢ thuộc tính phải là private
+
+👉 Nếu nộp code này:
+
+Thầy bắt lỗi ngay
+
+Có thể bị trừ nặng hoặc yêu cầu làm lại
+
+3️⃣ Vì sao protected bị cấm trong môn này?
+
+Giải thích để bạn hiểu (và nói lại được):
+
+protected cho phép lớp con truy cập trực tiếp thuộc tính
+
+Điều này:
+
+Phá vỡ Encapsulation
+
+Sinh viên dễ lạm dụng
+
+👉 Thầy muốn bạn:
+
+Dùng getter / setter
+
+Không truy cập biến trực tiếp
+
+4️⃣ CÁCH SỬA ĐÚNG CHUẨN PRO192 (RẤT QUAN TRỌNG)
+✅ SỬA LỚP CHA (EnvironmentArea)
+public class EnvironmentArea {
+
+    private String areaId;
+    private String areaName;
+    private int pollutionLevel;
+
+    public EnvironmentArea(String areaId, String areaName, int pollutionLevel) {
+        this.areaId = areaId;
+        this.areaName = areaName;
+        this.pollutionLevel = pollutionLevel;
+    }
+
+    public String getAreaId() {
+        return areaId;
+    }
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public int getPollutionLevel() {
+        return pollutionLevel;
+    }
+
+    public void setPollutionLevel(int pollutionLevel) {
+        this.pollutionLevel = pollutionLevel;
+    }
+
+    public String evaluatePollution() {
+        if (pollutionLevel < 30) {
+            return "Low pollution";
+        } else if (pollutionLevel < 70) {
+            return "Medium pollution";
+        } else {
+            return "High pollution";
+        }
+    }
+
+    public void display() {
+        System.out.println("Area ID: " + areaId);
+        System.out.println("Area Name: " + areaName);
+        System.out.println("Pollution Level: " + pollutionLevel);
+        System.out.println("Evaluation: " + evaluatePollution());
+    }
+}
+
+
+👉 KHÔNG protected – chỉ private
+
+✅ LỚP CON (GIỮ NGUYÊN, KHÔNG SAI)
+public class RiverArea extends EnvironmentArea {
+
+    public RiverArea(String areaId, String areaName, int pollutionLevel) {
+        super(areaId, areaName, pollutionLevel);
+    }
+
+    @Override
+    public void display() {
+        System.out.println("=== River Area ===");
+        super.display();
+    }
+}
+public class LakeArea extends EnvironmentArea {
+
+    public LakeArea(String areaId, String areaName, int pollutionLevel) {
+        super(areaId, areaName, pollutionLevel);
+    }
+
+    @Override
+    public void display() {
+        System.out.println("=== Lake Area ===");
+        super.display();
+    }
+}
+
+public class ResidentialArea extends EnvironmentArea {
+
+    public ResidentialArea(String areaId, String areaName, int pollutionLevel) {
+        super(areaId, areaName, pollutionLevel);
+    }
+
+    @Override
+    public void display() {
+        System.out.println("=== Residential Area ===");
+        super.display();
+    }
+}
+
