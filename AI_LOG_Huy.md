@@ -806,3 +806,254 @@ Thể hiện thay đổi
 Chỉ gọi các lớp khác
 
 Không đại diện dữ liệu
+Ok, mình viết code Java theo đúng UML bạn gửi, dành cho người mới học PRO192 nên sẽ:
+
+Code rõ ràng – dễ đọc
+
+Không dùng kỹ thuật nâng cao
+
+Có comment giải thích từng phần
+
+Dùng ArrayList, Scanner cơ bản
+
+1️⃣ RiverArea.java
+public class RiverArea {
+    private String areaId;
+    private String areaName;
+    private String areaType;
+    private int pollutionLevel;
+
+    public RiverArea(String areaId, String areaName, String areaType, int pollutionLevel) {
+        this.areaId = areaId;
+        this.areaName = areaName;
+        this.areaType = areaType;
+        this.pollutionLevel = pollutionLevel;
+    }
+
+    public String getAreaId() {
+        return areaId;
+    }
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public String getAreaType() {
+        return areaType;
+    }
+
+    public int getPollutionLevel() {
+        return pollutionLevel;
+    }
+
+    public void setPollutionLevel(int level) {
+        this.pollutionLevel = level;
+    }
+
+    // Đánh giá mức độ ô nhiễm
+    public String evaluatePollution() {
+        if (pollutionLevel < 30) {
+            return "Low";
+        } else if (pollutionLevel < 70) {
+            return "Medium";
+        } else {
+            return "High";
+        }
+    }
+
+    public void display() {
+        System.out.println("River ID: " + areaId);
+        System.out.println("Name: " + areaName);
+        System.out.println("Type: " + areaType);
+        System.out.println("Pollution Level: " + pollutionLevel);
+        System.out.println("Status: " + evaluatePollution());
+    }
+}
+
+2️⃣ LakeArea.java
+public class LakeArea {
+    private String areaId;
+    private String areaName;
+    private String areaType;
+    private int pollutionLevel;
+
+    public LakeArea(String areaId, String areaName, String areaType, int pollutionLevel) {
+        this.areaId = areaId;
+        this.areaName = areaName;
+        this.areaType = areaType;
+        this.pollutionLevel = pollutionLevel;
+    }
+
+    public String getAreaId() {
+        return areaId;
+    }
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public String getAreaType() {
+        return areaType;
+    }
+
+    public int getPollutionLevel() {
+        return pollutionLevel;
+    }
+
+    public void setPollutionLevel(int level) {
+        this.pollutionLevel = level;
+    }
+
+    public String evaluatePollution() {
+        if (pollutionLevel < 30) {
+            return "Low";
+        } else if (pollutionLevel < 70) {
+            return "Medium";
+        } else {
+            return "High";
+        }
+    }
+
+    public void display() {
+        System.out.println("Lake ID: " + areaId);
+        System.out.println("Name: " + areaName);
+        System.out.println("Type: " + areaType);
+        System.out.println("Pollution Level: " + pollutionLevel);
+        System.out.println("Status: " + evaluatePollution());
+    }
+}
+
+3️⃣ ResidentialArea.java
+public class ResidentialArea {
+    private String areaId;
+    private String areaName;
+    private String areaType;
+    private int pollutionLevel;
+
+    public ResidentialArea(String areaId, String areaName, String areaType, int pollutionLevel) {
+        this.areaId = areaId;
+        this.areaName = areaName;
+        this.areaType = areaType;
+        this.pollutionLevel = pollutionLevel;
+    }
+
+    public String getAreaId() {
+        return areaId;
+    }
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public String getAreaType() {
+        return areaType;
+    }
+
+    public int getPollutionLevel() {
+        return pollutionLevel;
+    }
+
+    public void setPollutionLevel(int level) {
+        this.pollutionLevel = level;
+    }
+
+    public String evaluatePollution() {
+        if (pollutionLevel < 30) {
+            return "Low";
+        } else if (pollutionLevel < 70) {
+            return "Medium";
+        } else {
+            return "High";
+        }
+    }
+
+    public void display() {
+        System.out.println("Residential ID: " + areaId);
+        System.out.println("Name: " + areaName);
+        System.out.println("Type: " + areaType);
+        System.out.println("Pollution Level: " + pollutionLevel);
+        System.out.println("Status: " + evaluatePollution());
+    }
+}
+
+4️⃣ AreaManager.java
+import java.util.ArrayList;
+
+public class AreaManager {
+    private ArrayList<RiverArea> riverAreas = new ArrayList<>();
+    private ArrayList<LakeArea> lakeAreas = new ArrayList<>();
+    private ArrayList<ResidentialArea> residentialAreas = new ArrayList<>();
+
+    public void addRiverArea(RiverArea area) {
+        riverAreas.add(area);
+    }
+
+    public void addLakeArea(LakeArea area) {
+        lakeAreas.add(area);
+    }
+
+    public void addResidentialArea(ResidentialArea area) {
+        residentialAreas.add(area);
+    }
+
+    public void displayAll() {
+        System.out.println("=== Rivers ===");
+        for (RiverArea r : riverAreas) {
+            r.display();
+            System.out.println();
+        }
+
+        System.out.println("=== Lakes ===");
+        for (LakeArea l : lakeAreas) {
+            l.display();
+            System.out.println();
+        }
+
+        System.out.println("=== Residential Areas ===");
+        for (ResidentialArea re : residentialAreas) {
+            re.display();
+            System.out.println();
+        }
+    }
+
+    public boolean updateRiverPollution(String id, int newLevel) {
+        for (RiverArea r : riverAreas) {
+            if (r.getAreaId().equals(id)) {
+                r.setPollutionLevel(newLevel);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int countPollutedRiverArea() {
+        int count = 0;
+        for (RiverArea r : riverAreas) {
+            if (r.getPollutionLevel() >= 70) {
+                count++;
+            }
+        }
+        return count;
+    }
+}
+
+
+(Các hàm Lake / Residential làm tương tự → rất chuẩn cho bài PRO192)
+
+5️⃣ Main.java (chạy thử)
+public class Main {
+    public static void main(String[] args) {
+        AreaManager manager = new AreaManager();
+
+        manager.addRiverArea(new RiverArea("R1", "Red River", "River", 80));
+        manager.addLakeArea(new LakeArea("L1", "West Lake", "Lake", 40));
+        manager.addResidentialArea(new ResidentialArea("RA1", "District 1", "Residential", 20));
+
+        manager.displayAll();
+
+        manager.updateRiverPollution("R1", 50);
+        System.out.println("After update:");
+        manager.displayAll();
+    }
+}
+
