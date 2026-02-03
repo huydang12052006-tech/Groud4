@@ -1056,4 +1056,110 @@ public class Main {
         manager.displayAll();
     }
 }
+Thực hiện quy trình viết code "Ngược" để so sánh Tính kế thừa
+Thầy yêu cầu bạn phải chuẩn bị hai phiên bản của dự án để hiểu rõ giá trị của tính kế thừa:
+• Phiên bản có kế thừa: Bạn hỏi AI xem dự án của mình (ví dụ quản lý thú cưng, quản lý môi trường) có thể áp dụng kế thừa như thế nào, sau đó yêu cầu nó viết code và vẽ sơ đồ lớp có kế thừa.
+• Phiên bản không có kế thừa: Bạn yêu cầu AI viết lại chương trình đó nhưng không sử dụng kế thừa (ví dụ: bỏ lớp cha như lớp Pet hoặc Base), khiến các thuộc tính bị trùng lặp ở các lớp con.
+• Mục tiêu: Việc này giúp bạn nhận ra tính kế thừa giúp giảm trùng lặp code như thế nào. Bạn cần chuẩn bị để giải thích rằng: "Vì những chỗ này trùng nhau nên cần qua kế thừa để loại bỏ sự trùng lặp đó".
+2. Các yêu cầu kỹ thuật khi viết code
+Khi viết các lớp (classes), bạn cần lưu ý các quy tắc nghiêm ngặt sau:
+• Phạm vi truy cập (Access Modifier): Tất cả các thuộc tính trong code phải để là private. Thầy tuyệt đối không cho phép sử dụng protected (dấu thăng #) trong môn học này.
+• Tham số trong hàm: Không được để các hàm nghiệp vụ trống rỗng. Ví dụ, hàm remove() phải có tham số như ID hoặc name để biết là xóa đối tượng nào, chứ không được để remove() không có tham số.
+• Kiểu trả về: Các hàm không có giá trị trả về thì phải ghi rõ là void, trừ hàm khởi tạo (constructor) thì không để kiểu trả về.
+• Thứ tự khai báo: Trong sơ đồ và code, phải đảm bảo đúng thứ tự: tên biến trước, sau đó mới đến kiểu dữ liệu (ví dụ: name: String).
+3. Quản lý code trên GitHub và sử dụng AI
+• Tóm tắt nội dung commit: Trước khi push code lên GitHub, bạn không nên chỉ ghi chung chung là "update". Hãy yêu cầu AI tóm tắt những gì bạn đã sửa trong đoạn code đó so với lần trước để ghi vào phần mô tả commit.
+• Nhật ký AI (AI Log): Bạn phải ghi lại cả quá trình bạn yêu cầu AI làm "quy trình ngược" (bỏ kế thừa) vào trong AI Log để minh chứng cho việc học của mình.
+• Kiểm tra code của AI: Thầy nhấn mạnh bạn phải review lại code do AI tạo ra. Nếu AI tạo ra mã nguồn có lỗi hoặc không đúng yêu cầu (như dùng protected), bạn phải tự sửa lại vì "con AI hại mình thì mình phải tự chịu trách nhiệm".
+4. Chuẩn bị dữ liệu mẫu
+• Dự án hiện tại không bắt buộc số lượng dòng dữ liệu quá lớn (mấy dòng cũng được), nhưng bạn cần chuẩn bị sẵn để chạy thử nghiệm (khác với môn sau sẽ yêu cầu tới 10.000 hoặc cả triệu dòng).
+Tổng kết lại: Bạn cần hoàn thiện code cho cả hai phương án (có và không có kế thừa), kiểm tra kỹ các thuộc tính private, tham số hàm, và chuẩn bị hình ảnh sơ đồ lớp tương ứng để nộp trên group lớp trước buổi học tới. kiểm tra xem nãy h làm sai chỗ nào ko
+public class EnvironmentArea {
+
+    protected String areaId;
+    protected String areaName;
+    protected int pollutionLevel;
+
+    // Constructor mặc định
+    public EnvironmentArea() {
+    }
+
+    // Constructor đầy đủ tham số
+    public EnvironmentArea(String areaId, String areaName, int pollutionLevel) {
+        this.areaId = areaId;
+        this.areaName = areaName;
+        this.pollutionLevel = pollutionLevel;
+    }
+
+    public String getAreaId() {
+        return areaId;
+    }
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public int getPollutionLevel() {
+        return pollutionLevel;
+    }
+
+    public void setPollutionLevel(int pollutionLevel) {
+        this.pollutionLevel = pollutionLevel;
+    }
+
+    // Đánh giá mức độ ô nhiễm
+    public String evaluatePollution() {
+        if (pollutionLevel < 30) {
+            return "Low pollution";
+        } else if (pollutionLevel < 70) {
+            return "Medium pollution";
+        } else {
+            return "High pollution";
+        }
+    }
+
+    public void display() {
+        System.out.println("Area ID: " + areaId);
+        System.out.println("Area Name: " + areaName);
+        System.out.println("Pollution Level: " + pollutionLevel);
+        System.out.println("Evaluation: " + evaluatePollution());
+    }
+}
+public class RiverArea extends EnvironmentArea {
+
+    public RiverArea(String areaId, String areaName, int pollutionLevel) {
+        super(areaId, areaName, pollutionLevel);
+    }
+
+    @Override
+    public void display() {
+        System.out.println("=== River Area ===");
+        super.display();
+    }
+}
+public class LakeArea extends EnvironmentArea {
+
+    public LakeArea(String areaId, String areaName, int pollutionLevel) {
+        super(areaId, areaName, pollutionLevel);
+    }
+
+    @Override
+    public void display() {
+        System.out.println("=== Lake Area ===");
+        super.display();
+    }
+}
+public class ResidentialArea extends EnvironmentArea {
+
+    public ResidentialArea(String areaId, String areaName, int pollutionLevel) {
+        super(areaId, areaName, pollutionLevel);
+    }
+
+    @Override
+    public void display() {
+        System.out.println("=== Residential Area ===");
+        super.display();
+    }
+} phiên bản kế thừa đây so sanh đi
+vậy bên phần không kế thừa sai j ko
 
