@@ -1160,6 +1160,211 @@ public class ResidentialArea extends EnvironmentArea {
         System.out.println("=== Residential Area ===");
         super.display();
     }
-} phiên bản kế thừa đây so sanh đi
-vậy bên phần không kế thừa sai j ko
+}
+import java.util.Scanner;
+
+public class Area {
+    private String areaId;
+    private String areaName;
+    private String areaType;
+    private int pollutionLevel;
+
+    public Area() {
+    }
+
+    public Area(String areaId, String areaName, String areaType, int pollutionLevel) {
+        this.areaId = areaId;
+        this.areaName = areaName;
+        this.areaType = areaType;
+        this.pollutionLevel = pollutionLevel;
+    }
+
+    public String getAreaId() {
+        return areaId;
+    }
+
+    public int getPollutionLevel() {
+        return pollutionLevel;
+    }
+
+    public void setPollutionLevel(int pollutionLevel) {
+        this.pollutionLevel = pollutionLevel;
+    }
+
+    public void input(Scanner sc) {
+        System.out.print("Enter ID: ");
+        this.areaId = sc.nextLine();
+
+        System.out.print("Enter Name: ");
+        this.areaName = sc.nextLine();
+
+        System.out.print("Enter Type: ");
+        this.areaType = sc.nextLine();
+
+        System.out.print("Enter Pollution Level: ");
+        this.pollutionLevel = Integer.parseInt(sc.nextLine());
+    }
+
+    public String evaluatePollution() {
+        if (pollutionLevel < 30) {
+            return "Low";
+        } else if (pollutionLevel < 70) {
+            return "Medium";
+        } else {
+            return "High";
+        }
+    }
+
+    public void display() {
+        System.out.println("ID: " + this.areaId);
+        System.out.println("Name: " + this.areaName);
+        System.out.println("Type: " + this.areaType);
+        System.out.println("Pollution Level: " + this.pollutionLevel);
+        System.out.println("Status: " + evaluatePollution());
+    }
+}
+import java.util.Scanner;
+
+public class RiverArea extends Area {
+
+    public RiverArea() {
+        super();
+    }
+
+    public RiverArea(String areaId, String areaName, String areaType, int pollutionLevel) {
+        super(areaId, areaName, areaType, pollutionLevel);
+    }
+
+    @Override
+    public void input(Scanner sc) {
+        System.out.println("=== Input River Area ===");
+        super.input(sc);
+    }
+
+    @Override
+    public void display() {
+        System.out.println("=== River Area ===");
+        super.display();
+    }
+}
+import java.util.Scanner;
+
+public class LakeArea extends Area {
+
+    public LakeArea() {
+        super();
+    }
+
+    public LakeArea(String areaId, String areaName, String areaType, int pollutionLevel) {
+        super(areaId, areaName, areaType, pollutionLevel);
+    }
+
+    @Override
+    public void input(Scanner sc) {
+        System.out.println("=== Input Lake Area ===");
+        super.input(sc);
+    }
+
+    @Override
+    public void display() {
+        System.out.println("=== Lake Area ===");
+        super.display();
+    }
+}
+import java.util.Scanner;
+
+public class ResidentialArea extends Area {
+
+    public ResidentialArea() {
+        super();
+    }
+
+    public ResidentialArea(String areaId, String areaName, String areaType, int pollutionLevel) {
+        super(areaId, areaName, areaType, pollutionLevel);
+    }
+
+    @Override
+    public void input(Scanner sc) {
+        System.out.println("=== Input Residential Area ===");
+        super.input(sc);
+    }
+
+    @Override
+    public void display() {
+        System.out.println("=== Residential Area ===");
+        super.display();
+    }
+}
+import java.util.ArrayList;
+
+public class AreaManager {
+    private ArrayList<Area> areaList = new ArrayList<>();
+
+    public void addArea(Area area) {
+        areaList.add(area);
+    }
+
+    public void displayAll() {
+        for (Area a : areaList) {
+            a.display();
+            System.out.println();
+        }
+    }
+
+    public int countHighPollution() {
+        int count = 0;
+        for (Area a : areaList) {
+            if (a.getPollutionLevel() >= 70) {
+                count++;
+            }
+        }
+        return count;
+    }
+}
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        AreaManager manager = new AreaManager();
+
+        System.out.print("Enter number of areas: ");
+        int n = Integer.parseInt(sc.nextLine());
+
+        for (int i = 0; i < n; i++) {
+            System.out.println("Choose type:");
+            System.out.println("1. River");
+            System.out.println("2. Lake");
+            System.out.println("3. Residential");
+
+            int choice = Integer.parseInt(sc.nextLine());
+
+            Area area = null;
+
+            if (choice == 1) {
+                area = new RiverArea();
+            } else if (choice == 2) {
+                area = new LakeArea();
+            } else if (choice == 3) {
+                area = new ResidentialArea();
+            } else {
+                System.out.println("Invalid choice!");
+                i--;
+                continue;
+            }
+
+            area.input(sc);
+            manager.addArea(area);
+        }
+
+        System.out.println("\n===== DISPLAY ALL AREAS =====");
+        manager.displayAll();
+
+        System.out.println("Number of high polluted areas: "
+                + manager.countHighPollution());
+
+        sc.close();
+    }
+}
 
