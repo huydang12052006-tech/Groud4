@@ -1,9 +1,21 @@
-Tên thành viên :
-Nguyễn Huỳnh Đăng Huy - trưởng nhóm ///Nguyễn Trần Anh Kiệt - thành viên 
+# Environmental Area Management System
 
+## Introduction
+This project is a simple Java application to manage environmental areas such as rivers, lakes, and residential zones. It demonstrates Object-Oriented Programming concepts.
 
-Tên dự án: Hệ thống Quản lý Môi trường
+## Team Members
+-Nguyễn Huỳnh Đăng Huy (QE200137) - Nguyễn Trần Anh Kiệt (QE200105) members.
 
-Mô tả ngắn gọn:
-Dự án xây dựng một hệ thống quản lý các khu vực môi trường (sông, hồ, khu dân cư, …) nhằm theo dõi và đánh giá mức độ ô nhiễm. Hệ thống hỗ trợ thêm, hiển thị, tìm kiếm và cập nhật thông tin khu vực môi trường thông qua giao diện dòng lệnh (console) hoặc giao diện đơn giản.
+## How to Run
 
+1. Open project in NetBeans
+2. Build the project
+3. Run Main.java
+
+## Features
+
+- Display all areas
+- Search by id
+- Search by name
+- Count high pollution areas
+- Class inheritance and polymorphism
